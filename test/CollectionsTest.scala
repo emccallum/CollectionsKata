@@ -44,4 +44,11 @@ class CollectionsTest extends Specification with Mockito {
     }
   }
 
+  "If a phone number is not stored" should {
+    "then I should print nothing" in {
+      collections.lookupPhoneNumber("Elise")
+      there was no(mockPrinter).println(anyString)
+    }
+  }
+
 }

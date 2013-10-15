@@ -19,7 +19,7 @@ class Collections {
     }
   }
 
-  def loadNames   {
+  def loadNames {
     nameMap.put("Bill", "832-367-0666")
     nameMap.put("Archer", "818-555-1234")
     nameMap.put("Lana", "818-555-4321")
@@ -27,6 +27,7 @@ class Collections {
 
   def lookupPhoneNumber(name: String) {
     loadNames
-    printer.println(nameMap.get(name))
+    if (nameMap.get(name) != null)
+      printer.println(nameMap.get(name))
   }
 }
