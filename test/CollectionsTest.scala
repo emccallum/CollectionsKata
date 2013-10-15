@@ -37,4 +37,11 @@ class CollectionsTest extends Specification with Mockito {
     }
   }
 
+  "If Bill's phone number is stored" should {
+    "then I should look it up and print it out" in {
+      collections.lookupPhoneNumber("Bill")
+      there was one(mockPrinter).println("832-367-0666")
+    }
+  }
+
 }
