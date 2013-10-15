@@ -47,7 +47,15 @@ class CollectionsTest extends Specification with Mockito {
   "If a phone number is not stored" should {
     "then I should print nothing" in {
       collections.lookupPhoneNumber("Elise")
-      there was no(mockPrinter).println(anyString)
+      there was one(mockPrinter).println("")
+    }
+  }
+
+  "A collection with a set of names" should {
+    "print them in alphabetical order" in {
+      collections.printNamesInMap()
+      there was one(mockPrinter).println("Archer") before (mockPrinter).println("Bill")
+      there was one(mockPrinter).println("Lana") after (mockPrinter).println("Bill")
     }
   }
 

@@ -1,5 +1,6 @@
 import java.io.PrintStream
 import java.util.HashMap
+import scala.collection.immutable.TreeMap
 
 /**
  * Created with IntelliJ IDEA.
@@ -10,7 +11,7 @@ import java.util.HashMap
  */
 class Collections {
   val printer = new PrintStream(System.out)
-  var nameMap = new HashMap[String, String]
+  val nameMap = TreeMap[String, String]("Bill" -> "832-367-0666", "Archer" -> "818-555-1234", "Lana" -> "818-555-4321")
 
   def findIntersection(set1: Set[String], set2: Set[String]) {
     if (set1.size > 0 && set2.size > 0) {
@@ -19,15 +20,20 @@ class Collections {
     }
   }
 
-  def loadNames {
-    nameMap.put("Bill", "832-367-0666")
-    nameMap.put("Archer", "818-555-1234")
-    nameMap.put("Lana", "818-555-4321")
+  def lookupPhoneNumber(name: String) {
+    val phoneNumber: String = nameMap.getOrElse(name, "")
+    printer.println(phoneNumber)
   }
 
-  def lookupPhoneNumber(name: String) {
-    loadNames
-    if (nameMap.get(name) != null)
-      printer.println(nameMap.get(name))
+  def printNamesInMap() {
+    nameMap.foreach(p => printer.println(p._1))
+  }
+}
+
+object Main {
+  def main(args: Array[String]) {
+    val c = new Collections
+    c.printNamesInMap()
+    c.lookupPhoneNumber("Elise")
   }
 }
